@@ -1,11 +1,18 @@
-function beforeSubmit() {
-  let outputDate = document.querySelector(".outputDate");
-  let inputDate = document.querySelector(".inputDate"); //string -> date
-  //   en_US
-  console.log(outputDate.value, inputDate.value);
+let captchaChecked = false;
 
-  let formatedDate = new Date(inputDate.value).toLocaleDateString("en-US");
-  outputDate.value = formatedDate;
+function beforeSubmit(event) {
+  if (captchaChecked) {
+    let outputDate = document.querySelector(".outputDate");
+    let inputDate = document.querySelector(".inputDate"); //string -> date
+    //   en_US
+    console.log(outputDate.value, inputDate.value);
+
+    let formatedDate = new Date(inputDate.value).toLocaleDateString("en-US");
+    outputDate.value = formatedDate;
+  } else {
+    alert("Please verify that you are not a robot.");
+    event.preventDefault();
+  }
 }
 
 function timestamp() {
